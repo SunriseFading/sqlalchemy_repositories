@@ -1,4 +1,4 @@
-from base import BaseRepository
+from src.base import BaseRepository
 from tests.models import User as UserModel
 
 
