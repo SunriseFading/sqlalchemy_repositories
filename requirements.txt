@@ -1,0 +1,9 @@
+aiosqlite
+sqlalchemy
+sqlalchemy_utils
+python-dotenv
+httpx
+pyjwt
+pytest
+pytest_asyncio
+pytest_mock
