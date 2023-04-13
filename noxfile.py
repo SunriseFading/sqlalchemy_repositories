@@ -5,11 +5,11 @@ import nox
 def format(session: nox.Session):
     session.install("ufmt", "black", "isort")
     session.run("ufmt", "format", "app", "tests")
-    session.run("black", "--config=configs/.black.toml", "base.py", "tests")
+    session.run("black", "--config=configs/.black.toml", "src", "tests")
     session.run(
         "isort",
         "--sp=configs/.isort.cfg",
-        "base.py",
+        "src",
         "tests"
     )
 
@@ -22,14 +22,14 @@ def lint(session: nox.Session):
         "check",
         "--config=configs/.ruff.toml",
         "--fix",
-        "base.py",
+        "src",
         "tests"
     )
-    session.run("flake8", "--config=configs/.flake8", "base.py", "tests")
+    session.run("flake8", "--config=configs/.flake8", "src", "tests")
     session.run(
         "mypy",
         "--config-file=configs/.mypy.ini",
-        "base.py",
+        "src",
         "tests"
     )
 
