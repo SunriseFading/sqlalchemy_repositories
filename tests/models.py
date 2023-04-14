@@ -2,8 +2,8 @@ from sqlalchemy import Column, Integer, String
 from tests.conftest import Base
 
 
-class User(Base):
-    __tablename__ = "users"
+class Instance(Base):
+    __tablename__ = "instances"
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String)

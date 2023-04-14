@@ -94,6 +94,7 @@ class BaseRepository:
         for instance in instances:
             await session.merge(instance)
         await session.commit()
+        return instances
 
     async def delete(self, instance, session: AsyncSession):
         await session.delete(instance)

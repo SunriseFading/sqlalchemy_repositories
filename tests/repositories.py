@@ -1,10 +1,10 @@
 from src.base import BaseRepository
-from tests.models import User as UserModel
+from tests.models import Instance as InstanceModel
 
 
-class UserRepository(BaseRepository):
+class InstanceRepository(BaseRepository):
     def __init__(self):
-        super().__init__(model=UserModel)
+        super().__init__(model=InstanceModel)
 
 
-user_repository = UserRepository()
+instance_repository = InstanceRepository()
