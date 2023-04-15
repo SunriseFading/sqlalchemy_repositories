@@ -1,6 +1,6 @@
 [flake8]
 count = true
-max-line-length = 88
+max-line-length = 120
 max-complexity = 30
 exclude = .git, __pycache__, .idea/
 select = F,W,E,C,N,B,A,S,T,H,JS,CCR,SIM,PEA,NU,D200,D201,D202,D209,D210

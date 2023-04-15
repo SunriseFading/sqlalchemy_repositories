@@ -9,9 +9,7 @@ class PhotoRepository:
         cls = type(instance)
         if os.path.exists(instance.photo):
             os.remove(instance.photo)
-        photo_path = os.path.join(
-            "media", cls.__name__.lower(), instance.name, photo.filename
-        )
+        photo_path = os.path.join("media", cls.__name__.lower(), instance.name, photo.filename)
         if not os.path.exists(os.path.dirname(photo_path)):
             os.makedirs(os.path.dirname(photo_path))
         with open(photo_path, "wb") as buffer:

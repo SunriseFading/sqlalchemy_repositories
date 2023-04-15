@@ -1,6 +1,5 @@
 import pytest
 from sqlalchemy import select
-
 from tests.models import Instance as InstanceModel
 from tests.repositories import instance_repository
 from tests.settings import test_instance
@@ -18,9 +17,7 @@ class TestBase:
         for number in range(10):
             name = f"№{number} {test_instance.name}"
             instances_model.append(InstanceModel(name=name))
-        created_users = await instance_repository.bulk_create(
-            instances=instances_model, session=session
-        )
+        created_users = await instance_repository.bulk_create(instances=instances_model, session=session)
         for instance_model, created_instance in zip(instances_model, created_users):
             assert instance_model.name == created_instance.name
 
@@ -60,20 +57,14 @@ class TestBase:
         assert expected_query.rstrip() in str(query)
 
     async def test_get(self, session):
-        got_instance = await instance_repository.get(
-            name=test_instance.name, session=session
-        )
+        got_instance = await instance_repository.get(name=test_instance.name, session=session)
         assert got_instance.name == test_instance.name
 
     async def test_get_or_create(self, session):
         instance_model = InstanceModel(name=test_instance.name)
-        created_instance = await instance_repository.get_or_create(
-            instance=instance_model, session=session
-        )
+        created_instance = await instance_repository.get_or_create(instance=instance_model, session=session)
         assert created_instance.id is not None
-        got_instance = await instance_repository.get_or_create(
-            instance=instance_model, session=session
-        )
+        got_instance = await instance_repository.get_or_create(instance=instance_model, session=session)
         assert created_instance.id == got_instance.id
 
     async def test_all(self, session):
@@ -89,17 +80,13 @@ class TestBase:
             "id": "1",
             "name": test_instance.name,
         }
-        filtered_instances = await instance_repository.filter(
-            session=session, **filters
-        )
+        filtered_instances = await instance_repository.filter(session=session, **filters)
         assert len(filtered_instances) == 1
         assert filtered_instances[0].name == test_instance.name
 
     async def test_update(self, session):
         instance_model = InstanceModel(id=1, name=test_instance.updated_name)
-        updated_instance = await instance_repository.update(
-            instance=instance_model, session=session
-        )
+        updated_instance = await instance_repository.update(instance=instance_model, session=session)
         assert test_instance.updated_name == updated_instance.name
 
     async def test_bulk_update(self, session):
@@ -109,9 +96,7 @@ class TestBase:
             id = all_instances[number].id
             name = f"№{number} {test_instance.updated_name}"
             instances_model.append(InstanceModel(id=id, name=name))
-        updated_instances = await instance_repository.bulk_update(
-            instances=instances_model, session=session
-        )
+        updated_instances = await instance_repository.bulk_update(instances=instances_model, session=session)
         for instance_model, updated_instance in zip(instances_model, updated_instances):
             assert instance_model.name == updated_instance.name
 
