@@ -40,6 +40,9 @@ class BaseRepository:
                     elif field.endswith("__lte"):
                         model_field = getattr(self.model, field[:-5])
                         filters.append(model_field <= value)
+                    elif field.endswith("__in"):
+                        model_field = getattr(self.model, field[:-4])
+                        filters.append(model_field.in_(value))
                     else:
                         model_field = getattr(self.model, field)
                         filters.append(model_field == value)
